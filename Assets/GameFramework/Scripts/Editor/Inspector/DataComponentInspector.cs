@@ -225,6 +225,7 @@ namespace UnityGameFramework.Editor
         {
             base.OnInspectorGUI();
             serializedObject.Update();
+			EditorGUILayout.HelpBox("Data list 注意设置好加载顺序,数据解析存在数据的互相依赖！", MessageType.Info);
             reorderableList.DoLayoutList();
         }
     }

@@ -30,7 +30,7 @@ namespace TowerDF.Data
 
 		public override void Init()
 		{
-			onInit();
+			OnInit();
 		}
 
 		public override void Preload()
@@ -41,7 +41,7 @@ namespace TowerDF.Data
 			GameEntry.Event.Subscribe(LoadDataTableFailureEventArgs.EventId, onLoadDataTableFailure);
 			GameEntry.Event.Subscribe(LoadDictionarySuccessEventArgs.EventId, onLoadDictionarySuccess);
 			GameEntry.Event.Subscribe(LoadDictionaryFailureEventArgs.EventId, onLoadDictionaryFailure);
-			onPreload();
+			OnPreload();
 		}
 
 		/// <summary>
@@ -55,7 +55,7 @@ namespace TowerDF.Data
 			GameEntry.Event.Unsubscribe(LoadDataTableFailureEventArgs.EventId, onLoadDataTableFailure);
 			GameEntry.Event.Unsubscribe(LoadDictionarySuccessEventArgs.EventId, onLoadDictionarySuccess);
 			GameEntry.Event.Unsubscribe(LoadDictionaryFailureEventArgs.EventId, onLoadDictionaryFailure);
-			onLoad();
+			OnLoad();
 		}
 
 		public override void Unload()
@@ -67,12 +67,12 @@ namespace TowerDF.Data
 				eventSubscriber = null;
 			}
 
-			onUnload();
+			OnUnload();
 		}
 
 		public override void Shutdown()
 		{
-			onShutdown();
+			OnShutdown();
 		}
 
 		protected void Subscribe(int id, EventHandler<GameEventArgs> handler)
@@ -99,7 +99,7 @@ namespace TowerDF.Data
 		protected void LoadDataTable(string dataTableName)
 		{
 			string dataTableAssetName = AssetUtility.GetDataTableAsset(dataTableName, true);
-			m_LoadFlag.Add(dataTableName, false);
+			m_LoadFlag.Add(dataTableAssetName, false);
 			GameEntry.DataTable.LoadDataTable(dataTableName, dataTableAssetName, this);
 		}
 
@@ -178,11 +178,11 @@ namespace TowerDF.Data
 
 
 
-		protected virtual void onInit() { }
-		protected virtual void onPreload() { }
-		protected virtual void onLoad() { }
-		protected virtual void onUnload() { }
-		protected virtual void onShutdown() { }
+		protected virtual void OnInit() { }
+		protected virtual void OnPreload() { }
+		protected virtual void OnLoad() { }
+		protected virtual void OnUnload() { }
+		protected virtual void OnShutdown() { }
 
 		
 

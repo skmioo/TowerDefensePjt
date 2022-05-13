@@ -343,9 +343,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataItems:
   - enable: 1
-    dataTypeName: TowerDF.DataSetting
+    dataTypeName: TowerDF.Data.DataSetting
   - enable: 1
-    dataTypeName: TowerDF.DataUI
+    dataTypeName: TowerDF.Data.DataAssetsPath
+  - enable: 1
+    dataTypeName: TowerDF.Data.DataScene
+  - enable: 1
+    dataTypeName: TowerDF.Data.DataUI
 --- !u!4 &9018521169093591498
 Transform:
   m_ObjectHideFlags: 0
@@ -1148,12 +1152,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AvailableProcedureTypeNames:
-  - TowerDF.ProcedureChangeScene
   - TowerDF.ProcedureCheckResources
   - TowerDF.ProcedureCheckVersion
   - TowerDF.ProcedureInitResources
   - TowerDF.ProcedureLaunch
   - TowerDF.ProcedureLevel
+  - TowerDF.ProcedureLoadingScene
   - TowerDF.ProcedureMenu
   - TowerDF.ProcedurePreload
   - TowerDF.ProcedureSplash

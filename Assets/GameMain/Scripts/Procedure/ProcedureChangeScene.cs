@@ -1,42 +1,82 @@
-﻿using GameFramework.Procedure;
+﻿using GameFramework.Event;
+using GameFramework.Fsm;
+using GameFramework.Procedure;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
+using TowerDF.Data;
+using UnityGameFramework.Runtime;
 
 namespace TowerDF
 {
-	/// <summary>
-	/// 
-	/// </summary>
-	public class ProcedureChangeScene : ProcedureBase
+	public class ProcedureLoadingScene : ProcedureBase
 	{
-		protected override void OnInit(ProcedureOwner procedureOwner)
-		{
-			base.OnInit(procedureOwner);
-		}
+		private int loadingSceneId = -1;
+		private bool loadSceneCompleted = false;
+		private SceneData sceneData = null;
 
-		protected override void OnEnter(ProcedureOwner procedureOwner)
+		protected override void OnEnter(IFsm<IProcedureManager> procedureOwner)
 		{
 			base.OnEnter(procedureOwner);
+			loadSceneCompleted = false;
+			loadingSceneId = -1;
+			GameEntry.Event.Subscribe(LoadSceneSuccessEventArgs.EventId, onLoadSceneSuccess);
+			GameEntry.Event.Subscribe(LoadSceneFailureEventArgs.EventId, OnLoadSceneFailure);
+			GameEntry.Event.Subscribe(LoadSceneUpdateEventArgs.EventId, OnLoadSceneUpdate);
+			GameEntry.Event.Subscribe(LoadSceneDependencyAssetEventArgs.EventId, OnLoadSceneDependencyAsset);
+			//卸载之前的场景
+			string[] loadedSceneAssetName = GameEntry.Scene.GetLoadedSceneAssetNames();
+			for (int i = 0; i < loadedSceneAssetName.Length; i++)
+			{
+				GameEntry.Scene.UnloadScene(loadedSceneAssetName[i]);
+			}
+
+			loadingSceneId = procedureOwner.GetData<VarInt32>(Constant.ProcedureData.NextSceneId).Value;
+			sceneData = GameEntry.Data.GetData<DataScene>().GetSceneData(loadingSceneId);
+			if (sceneData == null)
+			{
+				Log.Warning("Can not can scene data id :'{0}'.", loadingSceneId.ToString());
+				return;
+			}
+
+			GameEntry.Scene.LoadScene(sceneData.AssetPath, Constant.AssetPriority.SceneAsset, this);
+
 		}
 
-		protected override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds)
-		{
-			base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
-		}
-
-		protected override void OnLeave(ProcedureOwner procedureOwner, bool isShutdown)
+		protected override void OnLeave(IFsm<IProcedureManager> procedureOwner, bool isShutdown)
 		{
 			base.OnLeave(procedureOwner, isShutdown);
+			GameEntry.Event.Unsubscribe(LoadSceneSuccessEventArgs.EventId, onLoadSceneSuccess);
+			GameEntry.Event.Unsubscribe(LoadSceneFailureEventArgs.EventId, OnLoadSceneFailure);
+			GameEntry.Event.Unsubscribe(LoadSceneUpdateEventArgs.EventId, OnLoadSceneUpdate);
+			GameEntry.Event.Unsubscribe(LoadSceneDependencyAssetEventArgs.EventId, OnLoadSceneDependencyAsset);
 		}
 
-		protected override void OnDestroy(ProcedureOwner procedureOwner)
+		private void OnLoadSceneDependencyAsset(object sender, GameEventArgs e)
 		{
-			base.OnDestroy(procedureOwner);
+			
 		}
 
+		private void OnLoadSceneUpdate(object sender, GameEventArgs e)
+		{
+			
+		}
+
+		private void OnLoadSceneFailure(object sender, GameEventArgs e)
+		{
+			LoadSceneFailureEventArgs ne = e as LoadSceneFailureEventArgs;
+			if (ne.UserData != this)
+				return;
+			Log.Error("Load scene '{0}' failure, error message '{1}'.", ne.SceneAssetName, ne.ErrorMessage);
+
+		}
+
+		private void onLoadSceneSuccess(object sender, GameEventArgs e)
+		{
+			LoadSceneSuccessEventArgs ne = e as LoadSceneSuccessEventArgs;
+			if (ne.UserData != this)
+				return;
+			loadSceneCompleted = true;
+			GameEntry.Event.Fire(this, LoadLevelFinishEventArgs.Create(loadingSceneId));
+			Log.Info("Load scene '{0}' OK.", ne.SceneAssetName);
+		}
 	}
 }

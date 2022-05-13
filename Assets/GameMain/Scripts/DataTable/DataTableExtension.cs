@@ -30,7 +30,7 @@ namespace TowerDF
 				Log.Warning("Can not get data row type with class name '{0}'", dataClassName);
 				return;
 			}
-			DataTableBase dataTable = dataTableComponent.CreateDataTable(type, dataTableName);
+			DataTableBase dataTable = dataTableComponent.CreateDataTable(type, "");
 			dataTable.ReadData(AssetUtility.GetDataTableAsset(dataTableName), Constant.AssetPriority.DataTableAsset, userData);
 		}
 
