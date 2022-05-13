@@ -14,7 +14,7 @@ namespace Flower.Editor.DataTableTools
 {
     public sealed class DataTableGeneratorMenu
     {
-        [MenuItem("Tools/Generate DataTables", false, 1)]
+        [MenuItem("Tools/Generate DataTables(创建DataTables下的bytes文件)", false, 1)]
         private static void GenerateDataTables()
         {
             foreach (string dataTableName in GetDataTableNames())
@@ -33,7 +33,7 @@ namespace Flower.Editor.DataTableTools
         }
 
 
-        [MenuItem("Tools/Generate DataTable Code", false, 2)]
+        [MenuItem("Tools/Generate DataTable Code(生成DataTables解析的c# DR*.cs 文件)", false, 2)]
         private static void GenerateDataTableCode()
         {
             foreach (string dataTableName in GetDataTableNames())

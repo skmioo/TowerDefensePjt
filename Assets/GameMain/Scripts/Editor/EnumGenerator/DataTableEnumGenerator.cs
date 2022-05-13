@@ -57,7 +57,7 @@ namespace Flower
             string dataTableName = (string)userData;
 
             codeContent.Replace("__DATA_TABLE_CREATE_TIME__", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
-            codeContent.Replace("__DATA_TABLE_NAME_SPACE__", "Flower");
+            codeContent.Replace("__DATA_TABLE_NAME_SPACE__", "TowerDF");
             codeContent.Replace("__DATA_TABLE_ENUM_NAME__", "Enum" + dataTableName);
             //codeContent.Replace("__DATA_TABLE_COMMENT__", dataTableProcessor.GetValue(0, 1) + "。");
             codeContent.Replace("__DATA_TABLE_ENUM_ITEM__", GenerateEnumItems(dataTableProcessor));

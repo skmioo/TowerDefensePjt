@@ -5,7 +5,7 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 // 此文件由工具自动生成，请勿直接修改。
-// 生成时间：2022-05-13 11:07:09.392
+// 生成时间：2022-05-13 11:07:09.383
 //------------------------------------------------------------
 
 using GameFramework;
@@ -19,14 +19,14 @@ using UnityGameFramework.Runtime;
 namespace TowerDF
 {
     /// <summary>
-    /// 场景配置表。
+    /// 动态加载资源配置表。
     /// </summary>
-    public class DRScene : DataRowBase
+    public class DRItem : DataRowBase
     {
         private int m_Id = 0;
 
         /// <summary>
-        /// 获取场景编号。
+        /// 获取配置编号。
         /// </summary>
         public override int Id
         {
@@ -37,7 +37,16 @@ namespace TowerDF
         }
 
         /// <summary>
-        /// 获取资源Id。
+        /// 获取物体名字。
+        /// </summary>
+        public string Name
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// 获取资源ID。
         /// </summary>
         public int AssetId
         {
@@ -46,9 +55,9 @@ namespace TowerDF
         }
 
         /// <summary>
-        /// 获取流程名称。
+        /// 获取物体组Id。
         /// </summary>
-        public string Procedure
+        public int ItemGroupId
         {
             get;
             private set;
@@ -66,8 +75,9 @@ namespace TowerDF
             index++;
             m_Id = int.Parse(columnStrings[index++]);
             index++;
+            Name = columnStrings[index++];
             AssetId = int.Parse(columnStrings[index++]);
-            Procedure = columnStrings[index++];
+            ItemGroupId = int.Parse(columnStrings[index++]);
 
             GeneratePropertyArray();
             return true;
@@ -80,8 +90,9 @@ namespace TowerDF
                 using (BinaryReader binaryReader = new BinaryReader(memoryStream, Encoding.UTF8))
                 {
                     m_Id = binaryReader.Read7BitEncodedInt32();
+                    Name = binaryReader.ReadString();
                     AssetId = binaryReader.Read7BitEncodedInt32();
-                    Procedure = binaryReader.ReadString();
+                    ItemGroupId = binaryReader.Read7BitEncodedInt32();
                 }
             }
 

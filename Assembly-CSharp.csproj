@@ -84,6 +84,25 @@
     <Compile Include="Assets\GameMain\Scripts\Procedure\ProcedureUpdateVersion.cs" />
     <Compile Include="Assets\GameMain\Scripts\Localization\LocalizationSerializableObject.cs" />
     <Compile Include="Assets\GameMain\Scripts\DataTable\DRScene.cs" />
+    <Compile Include="Assets\GameMain\Scripts\DataTable\DRTower.cs" />
+    <Compile Include="Assets\GameMain\Scripts\DataTable\DREntityGroup.cs" />
+    <Compile Include="Assets\GameMain\Scripts\DataTable\DRSoundGroup.cs" />
+    <Compile Include="Assets\GameMain\Scripts\DataTable\DRWave.cs" />
+    <Compile Include="Assets\GameMain\Scripts\DataTable\DREnemy.cs" />
+    <Compile Include="Assets\GameMain\Scripts\DataTable\DRSoundPlayParam.cs" />
+    <Compile Include="Assets\GameMain\Scripts\DataTable\DRLevel.cs" />
+    <Compile Include="Assets\GameMain\Scripts\DataTable\DREntity.cs" />
+    <Compile Include="Assets\GameMain\Scripts\DataTable\DRUIForm.cs" />
+    <Compile Include="Assets\GameMain\Scripts\DataTable\DRPoolParam.cs" />
+    <Compile Include="Assets\GameMain\Scripts\DataTable\DRItemGroup.cs" />
+    <Compile Include="Assets\GameMain\Scripts\DataTable\DRAssetsPath.cs" />
+    <Compile Include="Assets\GameMain\Scripts\DataTable\DRSound.cs" />
+    <Compile Include="Assets\GameMain\Scripts\DataTable\DRUIGroup.cs" />
+    <Compile Include="Assets\GameMain\Scripts\DataTable\DRItem.cs" />
+    <Compile Include="Assets\GameMain\Scripts\DataTable\DRTowerLevel.cs" />
+    <Compile Include="Assets\GameMain\Scripts\DataTable\DRWaveElement.cs" />
+    <Compile Include="Assets\GameMain\Scripts\DataTable\DRProjectile.cs" />
+    <Compile Include="Assets\GameMain\Scripts\DataTable\BinaryReaderExtension.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\GameMain\DataTables\PoolParam.txt" />
@@ -93,8 +112,10 @@
      <None Include="Assets\GameMain\DataTables\UIForm.txt" />
      <None Include="Assets\GameMain\Configs\BuildInfo.txt" />
      <None Include="Assets\GameMain\DataTables\UIGroup.txt" />
+     <None Include="Assets\GameMain\Configs\DataTableCodeTemplate.txt" />
      <None Include="Assets\GameMain\Plugins\LitJson.dll" />
      <None Include="Assets\GameMain\Configs\DefaultConfig.txt" />
+     <None Include="Assets\GameMain\Configs\EnumTemplate.txt" />
      <None Include="Assets\GameMain\DataTables\Enemy.txt" />
      <None Include="Assets\GameMain\DataTables\WaveElement.txt" />
      <None Include="Assets\GameMain\DataTables\ItemGroup.txt" />

@@ -5,7 +5,7 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 // 此文件由工具自动生成，请勿直接修改。
-// 生成时间：2022-05-13 11:07:09.392
+// 生成时间：2022-05-13 11:07:09.413
 //------------------------------------------------------------
 
 using GameFramework;
@@ -19,14 +19,14 @@ using UnityGameFramework.Runtime;
 namespace TowerDF
 {
     /// <summary>
-    /// 场景配置表。
+    /// 敌人波次元素配置表。
     /// </summary>
-    public class DRScene : DataRowBase
+    public class DRWaveElement : DataRowBase
     {
         private int m_Id = 0;
 
         /// <summary>
-        /// 获取场景编号。
+        /// 获取配置编号。
         /// </summary>
         public override int Id
         {
@@ -37,18 +37,18 @@ namespace TowerDF
         }
 
         /// <summary>
-        /// 获取资源Id。
+        /// 获取敌人Id。
         /// </summary>
-        public int AssetId
+        public int EnemyId
         {
             get;
             private set;
         }
 
         /// <summary>
-        /// 获取流程名称。
+        /// 获取获取怪物生成时间。
         /// </summary>
-        public string Procedure
+        public float SpawnTime
         {
             get;
             private set;
@@ -66,8 +66,8 @@ namespace TowerDF
             index++;
             m_Id = int.Parse(columnStrings[index++]);
             index++;
-            AssetId = int.Parse(columnStrings[index++]);
-            Procedure = columnStrings[index++];
+            EnemyId = int.Parse(columnStrings[index++]);
+            SpawnTime = float.Parse(columnStrings[index++]);
 
             GeneratePropertyArray();
             return true;
@@ -80,8 +80,8 @@ namespace TowerDF
                 using (BinaryReader binaryReader = new BinaryReader(memoryStream, Encoding.UTF8))
                 {
                     m_Id = binaryReader.Read7BitEncodedInt32();
-                    AssetId = binaryReader.Read7BitEncodedInt32();
-                    Procedure = binaryReader.ReadString();
+                    EnemyId = binaryReader.Read7BitEncodedInt32();
+                    SpawnTime = binaryReader.ReadSingle();
                 }
             }
 
