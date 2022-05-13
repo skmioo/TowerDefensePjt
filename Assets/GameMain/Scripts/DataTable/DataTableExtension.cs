@@ -11,6 +11,9 @@ namespace TowerDF
 	public static class DataTableExtension
 	{
 		private const string DataClassPrefixName = "TowerDF.DR";
+		internal static readonly char[] DataSplitSeparators = new char[] { '\t' };
+		internal static readonly char[] DataTrimSeparators = new char[] { '\"' };
+
 		public static void LoadDataTable(this DataTableComponent dataTableComponent, string dataTableName,  string dataTableAssetName, object userData = null)
 		{
 			if (string.IsNullOrEmpty(dataTableAssetName))

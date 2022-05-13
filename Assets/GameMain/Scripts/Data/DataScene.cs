@@ -13,9 +13,22 @@ namespace TowerDF.Data
 
 	public sealed class DataScene : DataBase
 	{
+
+		protected override void onPreload()
+		{
+			base.onPreload();
+			LoadDataTable("Scene");
+		}
+
+		protected override void onLoad()
+		{
+			base.onLoad();
+			//GameEntry.DataTable.GetDataTable();
+		}
+
 		internal SceneData GetSceneData(int loadingSceneId)
 		{
-			
+			return null;
 		}
 	}
 

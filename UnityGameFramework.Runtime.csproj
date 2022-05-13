@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{32731171-CA46-788C-8622-7C60F2F15F65}</ProjectGuid>
+    <ProjectGuid>{44DB384A-F3F7-0E46-C1BD-6D34CB6DAE7A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>UnityGameFramework.Runtime</AssemblyName>
@@ -840,7 +840,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="GameFramework.csproj">
-      <Project>{604AFF50-3684-B6BD-1D4B-556267C63A5A}</Project>
+      <Project>{248E60AF-A867-0A7F-A206-36CA06DFA50D}</Project>
       <Name>GameFramework</Name>
     </ProjectReference>
   </ItemGroup>
