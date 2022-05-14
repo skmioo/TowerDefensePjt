@@ -41,6 +41,21 @@ namespace TowerDF
 
 		}
 
+		protected override void OnUpdate(IFsm<IProcedureManager> procedureOwner, float elapseSeconds, float realElapseSeconds)
+		{
+			base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
+			if (loadSceneCompleted)
+			{
+				Type type = Type.GetType(string.Format("TowerDF.{0}", sceneData.Procedure));
+				if (type != null)
+				{
+					ChangeState(procedureOwner,type);
+				}
+				else
+					Log.Warning("Can not change state,scene procedure '{0}' error, from scene '{1}.{2}'.", sceneData.Procedure.ToString(), sceneData.Id, sceneData.AssetPath);
+			}
+		}
+
 		protected override void OnLeave(IFsm<IProcedureManager> procedureOwner, bool isShutdown)
 		{
 			base.OnLeave(procedureOwner, isShutdown);

@@ -1,4 +1,5 @@
-﻿using GameFramework.Sound;
+﻿using GameFramework;
+using GameFramework.Sound;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,6 +67,25 @@ namespace TowerDF
 			return soundComponent.PlaySound(soundData.AssetPath, soundData.SoundGroupData.Name, Constant.AssetPriority.MusicAsset, playSoundParams, bindingEntity, userData);
 		}
 
+		public static void SetVolume(this SoundComponent soundComponent, string soundGroupName, float volume)
+		{
+			if (string.IsNullOrEmpty(soundGroupName))
+			{
+				Log.Warning("Sound group is invalid.");
+				return;
+			}
 
+			ISoundGroup soundGroup = soundComponent.GetSoundGroup(soundGroupName);
+			if (soundGroup == null)
+			{
+				Log.Warning("Sound group '{0}' is invalid.", soundGroupName);
+				return;
+			}
+
+			soundGroup.Volume = volume;
+
+			GameEntry.Setting.SetFloat(Utility.Text.Format(Constant.Setting.SoundGroupVolume, soundGroupName), volume);
+			GameEntry.Setting.Save();
+		}
 	}
 }

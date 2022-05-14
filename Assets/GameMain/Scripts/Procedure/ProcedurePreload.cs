@@ -1,11 +1,7 @@
-﻿using GameFramework.Data;
+﻿using GameFramework;
 using GameFramework.Event;
 using GameFramework.Procedure;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TowerDF.Data;
 using UnityGameFramework.Runtime;
 using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
@@ -118,7 +114,12 @@ namespace TowerDF
 
 		private void SetUIComponent()
 		{
-		
+			UIGroupData[] uiGroupDatas = GameEntry.Data.GetData<DataUI>().GetAllUIGroupData();
+			foreach (var item in uiGroupDatas)
+			{
+				GameEntry.UI.AddUIGroup(item.Name, item.Depth);
+				GameEntry.Sound.SetVolume(item.Name, GameEntry.Setting.GetFloat(Utility.Text.Format(Constant.Setting.SoundGroupVolume, item.Name), 1));
+			}
 		}
 
 		private void SetItemComponent()
@@ -128,7 +129,12 @@ namespace TowerDF
 
 		private void SetSoundComponent()
 		{
-		
+			SoundGroupData[]  soundGroupDatas = GameEntry.Data.GetData<DataSound>().GetAllSoundGroupData();
+			foreach (var data in soundGroupDatas)
+			{
+				GameEntry.Sound.AddSoundGroup(data.Name, data.AvoidBeingReplacedBySamePriority, data.Mute,data.Volume, data.SoundAgentCount);
+				GameEntry.Sound.SetVolume(data.Name, GameEntry.Setting.GetFloat(Utility.Text.Format(Constant.Setting.SoundGroupVolume, data.Name), 1));
+			}
 		}
 
 		protected override void OnLeave(ProcedureOwner procedureOwner, bool isShutdown)
