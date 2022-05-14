@@ -12,7 +12,7 @@ namespace TowerDF
 		public Vector3 rotateSpeed;
 		private void Update()
 		{
-			transform.localEulerAngles += rotateSpeed;
+			transform.localEulerAngles += rotateSpeed * Time.deltaTime;
 		}
 	}
 }

@@ -106,6 +106,16 @@
     <Compile Include="Assets\GameMain\Scripts\Localization\LocalizationSerializableObject.cs" />
     <Compile Include="Assets\GameMain\Scripts\Menu\IntervalParticleSystemPlayer.cs" />
     <Compile Include="Assets\GameMain\Scripts\Menu\Rotator.cs" />
+    <Compile Include="Assets\GameMain\Scripts\UI\UGuiForm.cs" />
+    <Compile Include="Assets\GameMain\Scripts\UI\UIExtension.cs" />
+    <Compile Include="Assets\GameMain\Scripts\UI\UGuiGroupHelper.cs" />
+    <Compile Include="Assets\GameMain\Scripts\Sound\SoundExtension.cs" />
+    <Compile Include="Assets\GameMain\Scripts\Data\DataSound.cs" />
+    <Compile Include="Assets\GameMain\Scripts\Enum\EnumSound.cs" />
+    <Compile Include="Assets\GameMain\Scripts\Enum\EnumItem.cs" />
+    <Compile Include="Assets\GameMain\Scripts\Enum\EnumEntity.cs" />
+    <Compile Include="Assets\GameMain\Scripts\Enum\EnumUIForm.cs" />
+    <Compile Include="Assets\GameMain\Scripts\UI\UIMainMenuForm.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\GameMain\DataTables\PoolParam.txt" />
